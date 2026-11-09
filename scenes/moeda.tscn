@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://5r8pcgu6gmds"]
+
+[ext_resource type="Script" uid="uid://d3p8qh2sht5ot" path="res://scenes/moeda.gd" id="1_3o5iq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+radius = 24.0
+
+[node name="Moeda" type="Area2D" unique_id=455794134]
+script = ExtResource("1_3o5iq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=857837177]
+shape = SubResource("CircleShape2D_dqkch")
+debug_color = Color(0.9917461, 0, 0.2675964, 0.41960785)
