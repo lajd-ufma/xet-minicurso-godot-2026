@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://defgmdyxxup6x"]
 
 [ext_resource type="PackedScene" uid="uid://cpexknsg340pu" path="res://scenes/player.tscn" id="1_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://5r8pcgu6gmds" path="res://scenes/moeda.tscn" id="2_4wyf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(613.5, 108)
@@ -19,21 +18,3 @@ collision_layer = 2
 position = Vector2(308, 341)
 shape = SubResource("RectangleShape2D_yf5fn")
 debug_color = Color(0.16740584, 0.6442846, 1.92523e-07, 0.41960785)
-
-[node name="Moeda" parent="." unique_id=455794134 instance=ExtResource("2_4wyf3")]
-position = Vector2(256, 224)
-
-[node name="Moeda2" parent="." unique_id=1345927698 instance=ExtResource("2_4wyf3")]
-position = Vector2(144, 228)
-
-[node name="Moeda3" parent="." unique_id=29436971 instance=ExtResource("2_4wyf3")]
-position = Vector2(184, 148)
-
-[node name="Moeda4" parent="." unique_id=1786817757 instance=ExtResource("2_4wyf3")]
-position = Vector2(356, 200)
-
-[node name="Moeda5" parent="." unique_id=1563601249 instance=ExtResource("2_4wyf3")]
-position = Vector2(60, 184)
-
-[node name="Moeda6" parent="." unique_id=1196381569 instance=ExtResource("2_4wyf3")]
-position = Vector2(60, 252)

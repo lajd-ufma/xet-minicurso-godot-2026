@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://c0v2omgc82st4"]
+
+[ext_resource type="Texture2D" uid="uid://bnvexg1lvu03n" path="res://assets/Tilemap/1a.png" id="1_qy0ep"]
+[ext_resource type="Texture2D" uid="uid://kvum4yfq7g7j" path="res://assets/Tilemap/tilemap.png" id="2_m0fiu"]
+[ext_resource type="Texture2D" uid="uid://cja1hn6em4ryc" path="res://assets/Tilemap/1b.png" id="3_ks8h7"]
+[ext_resource type="Texture2D" uid="uid://ra2g3d0bkm3v" path="res://assets/Tilemap/1c.png" id="4_xqusp"]
+[ext_resource type="Texture2D" uid="uid://boriu6bo46mxw" path="res://assets/Tilemap/2a.png" id="5_g2jyo"]
+[ext_resource type="Texture2D" uid="uid://dopdbjlvd1ey" path="res://assets/Tilemap/2b.png" id="6_6nsdf"]
+[ext_resource type="Texture2D" uid="uid://dx3lle0vfbtp3" path="res://assets/Tilemap/2c.png" id="7_tcxje"]
+[ext_resource type="Texture2D" uid="uid://bbm8rptw25w21" path="res://assets/Tilemap/3a.png" id="8_w8nps"]
+[ext_resource type="Texture2D" uid="uid://bf5ellg5j1j2i" path="res://assets/Tilemap/3b.png" id="9_k3iii"]
+[ext_resource type="Texture2D" uid="uid://c8y5f6gqbtirc" path="res://assets/Tilemap/3c.png" id="10_rbygd"]
+[ext_resource type="Texture2D" uid="uid://bciivg63y8uf7" path="res://assets/Sala das caldeiras.png" id="11_f62w6"]
+[ext_resource type="PackedScene" uid="uid://cpexknsg340pu" path="res://scenes/player.tscn" id="12_p6ae7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l0ot"]
+texture = ExtResource("1_qy0ep")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gtsar"]
+texture = ExtResource("2_m0fiu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_te2ap"]
+texture = ExtResource("3_ks8h7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8lqux"]
+texture = ExtResource("4_xqusp")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdff1"]
+texture = ExtResource("5_g2jyo")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0gyx"]
+texture = ExtResource("6_6nsdf")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlxus"]
+texture = ExtResource("7_tcxje")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0bxi"]
+texture = ExtResource("8_w8nps")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i566c"]
+texture = ExtResource("9_k3iii")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evepa"]
+texture = ExtResource("10_rbygd")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_w4mfu"]
+sources/1 = SubResource("TileSetAtlasSource_4l0ot")
+sources/2 = SubResource("TileSetAtlasSource_te2ap")
+sources/3 = SubResource("TileSetAtlasSource_8lqux")
+sources/4 = SubResource("TileSetAtlasSource_cdff1")
+sources/5 = SubResource("TileSetAtlasSource_c0gyx")
+sources/6 = SubResource("TileSetAtlasSource_vlxus")
+sources/7 = SubResource("TileSetAtlasSource_x0bxi")
+sources/8 = SubResource("TileSetAtlasSource_i566c")
+sources/9 = SubResource("TileSetAtlasSource_evepa")
+sources/10 = SubResource("TileSetAtlasSource_gtsar")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy0ep"]
+size = Vector2(1282.1481, 42.56717)
+
+[node name="Fase1Caldeiras" type="Node2D" unique_id=737980314]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2084379434]
+tile_set = SubResource("TileSet_w4mfu")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1816482260]
+position = Vector2(684.5, 391.5)
+scale = Vector2(1.0648438, 1.0847223)
+texture = ExtResource("11_f62w6")
+
+[node name="Player" parent="." unique_id=1160380794 instance=ExtResource("12_p6ae7")]
+position = Vector2(654, 619)
+scale = Vector2(1.5, 1.5)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1337527944]
+position = Vector2(684.5, 391.5)
+scale = Vector2(1.0648438, 1.0847223)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=162236618]
+position = Vector2(-0.13482666, 351.7029)
+scale = Vector2(0.99999976, 0.99999964)
+shape = SubResource("RectangleShape2D_qy0ep")
