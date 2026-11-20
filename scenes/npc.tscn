@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dbn2wcqrq5hxu"]
+
+[ext_resource type="Script" uid="uid://ir13lwyndtj" path="res://scripts/npc.gd" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://fyo5mhntesf4" path="res://icon.svg" id="1_nh2m4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(130, 130)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 112.28535
+
+[node name="npc" type="CharacterBody2D" unique_id=2048621541]
+script = ExtResource("1_abqhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1553848239]
+texture = ExtResource("1_nh2m4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2029971740]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="AreaDialogo" type="Area2D" parent="." unique_id=1091872176]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDialogo" unique_id=759370352]
+shape = SubResource("CircleShape2D_g4v7s")
+debug_color = Color(0.9378003, 1.992613e-05, 0.6285537, 0.41960785)
+
+[connection signal="body_entered" from="AreaDialogo" to="." method="_on_area_dialogo_body_entered"]

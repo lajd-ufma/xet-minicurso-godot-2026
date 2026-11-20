@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://defgmdyxxup6x"]
 
 [ext_resource type="PackedScene" uid="uid://cpexknsg340pu" path="res://scenes/player.tscn" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://dbn2wcqrq5hxu" path="res://scenes/npc.tscn" id="2_rwgxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
-size = Vector2(613.5, 108)
+size = Vector2(613.5, 107)
 
 [node name="World" type="Node2D" unique_id=241621730]
 scale = Vector2(2, 2)
@@ -15,6 +16,17 @@ position = Vector2(472, 220)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=759274824]
-position = Vector2(308, 341)
+position = Vector2(308, 341.5)
 shape = SubResource("RectangleShape2D_yf5fn")
 debug_color = Color(0.16740584, 0.6442846, 1.92523e-07, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=211263458]
+offset_top = 288.0
+offset_right = 612.0
+offset_bottom = 392.0
+color = Color(0.3019608, 0.24313726, 0.78039217, 1)
+
+[node name="npc" parent="." unique_id=2048621541 instance=ExtResource("2_rwgxs")]
+position = Vector2(140, 220)
+scale = Vector2(0.5, 0.5)
+collision_mask = 3

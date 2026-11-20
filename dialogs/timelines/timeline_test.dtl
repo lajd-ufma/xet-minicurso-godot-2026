@@ -1,0 +1,14 @@
+join character_test center
+Olá tropinha da Liga de Jogos
+Bem vindos a aula de Dialogic
+Tchauuu
+leave character_test
+O godoto foi embora
+escolha uma cor
+- vermelho
+	[signal arg="ficar_vermelho"]
+- verde
+	[signal arg="ficar_verde"]
+- azul
+	[signal arg="ficar_azul"]
+cabou  cabou
