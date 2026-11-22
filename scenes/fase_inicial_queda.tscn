@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b7fe6qwjos5xm"]
+
+[ext_resource type="Texture2D" uid="uid://gcn7lcsy8i40" path="res://assets/Fábrica.png" id="1_4rwpe"]
+[ext_resource type="PackedScene" uid="uid://cpexknsg340pu" path="res://scenes/player.tscn" id="2_4rwpe"]
+[ext_resource type="Script" uid="uid://br0r30kv3w838" path="res://scripts/area_transicao.gd" id="3_82f2e"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ty0te"]
+a = Vector2(949, -105)
+b = Vector2(308, -105)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w4mfu"]
+a = Vector2(307, -226)
+b = Vector2(307, -13222)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
+size = Vector2(18, 102)
+
+[node name="FaseInicialQueda" type="Node2D" unique_id=1319839252]
+
+[node name="Fábrica" type="Sprite2D" parent="." unique_id=2094542463]
+position = Vector2(314, 966)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica2" type="Sprite2D" parent="." unique_id=1058119510]
+position = Vector2(315, 2570)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica3" type="Sprite2D" parent="." unique_id=1757076387]
+position = Vector2(313, 4182)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica4" type="Sprite2D" parent="." unique_id=625287288]
+position = Vector2(314, 5786)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica5" type="Sprite2D" parent="." unique_id=2011628552]
+position = Vector2(314, 7370)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica6" type="Sprite2D" parent="." unique_id=2092149289]
+position = Vector2(315, 8974)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica7" type="Sprite2D" parent="." unique_id=921932537]
+position = Vector2(313, 10586)
+texture = ExtResource("1_4rwpe")
+
+[node name="Fábrica8" type="Sprite2D" parent="." unique_id=124857501]
+position = Vector2(314, 12190)
+texture = ExtResource("1_4rwpe")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1354329953]
+position = Vector2(-314, 13228)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=1168219281]
+shape = SubResource("SegmentShape2D_ty0te")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1661710091]
+shape = SubResource("SegmentShape2D_w4mfu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=266746830]
+position = Vector2(642, 0)
+shape = SubResource("SegmentShape2D_w4mfu")
+
+[node name="Player" parent="." unique_id=1160380794 instance=ExtResource("2_4rwpe")]
+position = Vector2(304, -39)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2026190548]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 10
+limit_right = 634
+limit_bottom = 13150
+limit_smoothed = true
+
+[node name="AreaTransicao" type="Area2D" parent="." unique_id=1121855401]
+position = Vector2(609, 13029)
+collision_layer = 0
+script = ExtResource("3_82f2e")
+proxima_cena = "res://scenes/fase_1_caldeiras.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTransicao" unique_id=940294760]
+position = Vector2(46, 40)
+shape = SubResource("RectangleShape2D_ty0te")

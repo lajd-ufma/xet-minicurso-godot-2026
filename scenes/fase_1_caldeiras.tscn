@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c8y5f6gqbtirc" path="res://assets/Tilemap/3c.png" id="10_rbygd"]
 [ext_resource type="Texture2D" uid="uid://bciivg63y8uf7" path="res://assets/Sala das caldeiras.png" id="11_f62w6"]
 [ext_resource type="PackedScene" uid="uid://cpexknsg340pu" path="res://scenes/player.tscn" id="12_p6ae7"]
+[ext_resource type="PackedScene" uid="uid://be6c2stm1y7k5" path="res://scenes/enemy.tscn" id="13_m0fiu"]
+[ext_resource type="PackedScene" uid="uid://dmg5q35mulbro" path="res://scenes/hud.tscn" id="14_ks8h7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l0ot"]
 texture = ExtResource("1_qy0ep")
@@ -100,12 +102,28 @@ texture = ExtResource("11_f62w6")
 position = Vector2(654, 619)
 scale = Vector2(1.5, 1.5)
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1642615715]
+limit_left = 5
+limit_right = 1366
+limit_bottom = 782
+limit_smoothed = true
+position_smoothing_enabled = true
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1337527944]
 position = Vector2(684.5, 391.5)
 scale = Vector2(1.0648438, 1.0847223)
 collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=162236618]
 position = Vector2(-0.13482666, 351.7029)
 scale = Vector2(0.99999976, 0.99999964)
 shape = SubResource("RectangleShape2D_qy0ep")
+
+[node name="Enemy" parent="." unique_id=26283282 instance=ExtResource("13_m0fiu")]
+position = Vector2(970, 607)
+scale = Vector2(1.5, 1.5)
+
+[node name="HUD" parent="." unique_id=1756323150 instance=ExtResource("14_ks8h7")]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)

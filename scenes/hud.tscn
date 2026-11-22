@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dmg5q35mulbro"]
+
+[ext_resource type="Script" uid="uid://db0qlnbo80vnc" path="res://scripts/barra_vida.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://b24fwksrxasse" path="res://assets/barra de vida/barra dV1.png" id="2_5pdws"]
+[ext_resource type="Texture2D" uid="uid://ciegv2wpsj3bt" path="res://assets/barra de vida/barra dV2.png" id="3_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://bm6fjl54xj1dj" path="res://assets/barra de vida/barra dV3.png" id="4_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://cg4n2galus408" path="res://assets/barra de vida/barra dV4.png" id="5_mphia"]
+[ext_resource type="Texture2D" uid="uid://c4s5to2gsaqbn" path="res://assets/barra de vida/barra dV5.png" id="6_0m4u7"]
+[ext_resource type="Texture2D" uid="uid://cqsjjw77c53ov" path="res://assets/barra de vida/barra s vida.png" id="7_apjy4"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1756323150]
+
+[node name="BarraVida" type="Sprite2D" parent="." unique_id=1172382353]
+script = ExtResource("1_ahhtf")
+vida_5_5 = ExtResource("2_5pdws")
+vida_4_5 = ExtResource("3_hd3ao")
+vida_3_5 = ExtResource("4_0i1j5")
+vida_2_5 = ExtResource("5_mphia")
+vida_1_5 = ExtResource("6_0m4u7")
+vida_0_5 = ExtResource("7_apjy4")
