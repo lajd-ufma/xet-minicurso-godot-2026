@@ -24,7 +24,7 @@ extends CharacterBody2D
 @export var tamanho_barra: Vector2 = Vector2(100, 0.5)
 
 @export_group("Atordoamento")
-@export var duracao_stun: float = 0.5
+@export var duracao_stun: float = 1.0
 
 enum Estado {
 	PATRULHA,
@@ -46,11 +46,11 @@ var andando: bool = true
 var tempo_patrulha: float = 0.0
 
 var cooldown_ataque: float = 0.0
+var tempo_stun: float = 0.0
 
 var posicao_inicial_visao: Vector2
 var posicao_inicial_colisao_visao: Vector2
 
-var tempo_stun: int
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var area_visao: Area2D = $VissionArea
@@ -67,10 +67,10 @@ var tempo_stun: int
 func _ready() -> void:
 	vida = vida_maxima
 	tempo_patrulha = tempo_andando
-	tempo_stun = duracao_stun
+
 	posicao_inicial_visao = area_visao.position
 	posicao_inicial_colisao_visao = colisao_visao.position
-	
+
 	barra_vida.position = deslocamento_barra
 	barra_vida.size = tamanho_barra
 	barra_vida.min_value = 0
@@ -79,7 +79,7 @@ func _ready() -> void:
 	barra_vida.show_percentage = false
 	barra_vida.visible = false
 	barra_vida.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
+
 	area_visao.body_entered.connect(_on_vision_body_entered)
 	area_visao.body_exited.connect(_on_vision_body_exited)
 
@@ -101,10 +101,11 @@ func _physics_process(delta: float) -> void:
 
 	if cooldown_ataque > 0:
 		cooldown_ataque -= delta
-	
+
 	if estado == Estado.STUNNED:
 		velocity.x = 0
 		tempo_stun -= delta
+
 		if tempo_stun <= 0:
 			if is_instance_valid(jogador):
 				estado = Estado.PERSEGUINDO
@@ -112,8 +113,12 @@ func _physics_process(delta: float) -> void:
 				estado = Estado.PATRULHA
 				andando = true
 				tempo_patrulha = tempo_andando
+
+			tocar_animacao("idle")
+
 		move_and_slide()
 		return
+
 	match estado:
 		Estado.PATRULHA:
 			patrulhar(delta)
@@ -131,7 +136,7 @@ func _on_vision_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		jogador = body
 
-		if estado != Estado.MORTO and estado != Estado.ATACANDO:
+		if estado != Estado.MORTO and estado != Estado.ATACANDO and estado != Estado.STUNNED:
 			estado = Estado.PERSEGUINDO
 
 
@@ -139,7 +144,7 @@ func _on_vision_body_exited(body: Node2D) -> void:
 	if body == jogador:
 		jogador = null
 
-		if estado != Estado.MORTO and estado != Estado.ATACANDO:
+		if estado != Estado.MORTO and estado != Estado.ATACANDO and estado != Estado.STUNNED:
 			estado = Estado.PATRULHA
 			andando = true
 			tempo_patrulha = tempo_andando
@@ -261,6 +266,9 @@ func iniciar_ataque() -> void:
 
 
 func atacar() -> void:
+	if estado != Estado.ATACANDO:
+		return
+
 	if not sprite.flip_h:
 		attack_right.set_deferred("disabled", false)
 		attack_left.set_deferred("disabled", true)
@@ -270,7 +278,10 @@ func atacar() -> void:
 
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-	
+
+	if estado != Estado.ATACANDO:
+		return
+
 	for body in attack_area.get_overlapping_bodies():
 		if body.is_in_group("Player"):
 			if body.has_method("take_damage"):
@@ -286,13 +297,23 @@ func take_damage(quantidade: int) -> void:
 	if estado == Estado.MORTO:
 		return
 
-	vida = maxi(vida-quantidade, 0)
-	
+	vida = maxi(vida - quantidade, 0)
+
 	barra_vida.value = vida
 	barra_vida.visible = true
 
 	if vida <= 0:
 		morrer()
+		return
+
+	estado = Estado.STUNNED
+	tempo_stun = duracao_stun
+	velocity.x = 0
+
+	attack_right.set_deferred("disabled", true)
+	attack_left.set_deferred("disabled", true)
+
+	tocar_animacao("idle")
 
 
 func morrer() -> void:

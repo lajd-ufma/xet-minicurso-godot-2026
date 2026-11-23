@@ -15,13 +15,16 @@ signal pegou_cogumelo
 
 var morto: bool = false
 var atacando: bool = false
-var dano:int = 10
-var vida:int
-var vida_max:int = 50
+var dano: int = 10
+var vida: int
+var vida_max: int = 50
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 200.0
 
+# Configurações do pulo
+const JUMP_VELOCITY = -800
+const GRAVITY_MULTIPLIER = 1.5
+const JUMP_CUT_MULTIPLIER = 2.0
 
 func _ready() -> void:
 	pegou_moeda.connect(incrementar_contador_moeda)
@@ -60,11 +63,18 @@ func _physics_process(delta: float) -> void:
 	if morto:
 		return
 
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	var gravidade = get_gravity().y * GRAVITY_MULTIPLIER
 
+	if not is_on_floor():
+		velocity.y += gravidade * delta
+
+	# Pulo
 	if Input.is_action_just_pressed("pular") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	# Pulo variável: soltar o botão reduz o impulso
+	if Input.is_action_just_released("pular") and velocity.y < 0:
+		velocity.y *= 0.5
 
 	var direction := Input.get_axis("mover_esquerda", "mover_direita")
 
@@ -135,14 +145,18 @@ func atacar() -> void:
 		if body.has_method("take_damage"):
 			body.take_damage(dano)
 
+
 func terminar_ataque() -> void:
 	attack_left.set_deferred("disabled", true)
 	attack_right.set_deferred("disabled", true)
 
-func take_damage(quantidade:int):
+
+func take_damage(quantidade: int):
 	if morto:
 		return
+
 	vida -= quantidade
+
 	if vida <= 0:
 		morto = true
 		anim.play("death")

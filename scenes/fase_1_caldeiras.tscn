@@ -99,8 +99,8 @@ scale = Vector2(1.0648438, 1.0847223)
 texture = ExtResource("11_f62w6")
 
 [node name="Player" parent="." unique_id=1160380794 instance=ExtResource("12_p6ae7")]
-position = Vector2(654, 619)
-scale = Vector2(1.5, 1.5)
+position = Vector2(337, 664)
+scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1642615715]
 limit_left = 5
@@ -121,9 +121,10 @@ scale = Vector2(0.99999976, 0.99999964)
 shape = SubResource("RectangleShape2D_qy0ep")
 
 [node name="Enemy" parent="." unique_id=26283282 instance=ExtResource("13_m0fiu")]
-position = Vector2(970, 607)
-scale = Vector2(1.5, 1.5)
+position = Vector2(994, 668)
+scale = Vector2(2, 2)
 
 [node name="HUD" parent="." unique_id=1756323150 instance=ExtResource("14_ks8h7")]
-scale = Vector2(3, 3)
-transform = Transform2D(3, 0, 0, 3, 0, 0)
+offset = Vector2(0, -130)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, -130)
